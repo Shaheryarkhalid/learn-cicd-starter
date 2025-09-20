@@ -39,7 +39,7 @@ func TestGetAPIKeyWithmalformedApiKey(t *testing.T) {
 	keyString := "Apitoken " + key
 	req.Header.Set("Authorization", keyString)
 	APIKey, err := GetAPIKey(req.Header)
-	if err != nil {
+	if err == nil {
 		t.Errorf("error should not be nil.")
 		t.FailNow()
 	}
