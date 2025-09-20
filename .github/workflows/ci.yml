@@ -5,7 +5,7 @@ on:
     branches : [main]
     
 jobs:
-  test:
+  Tests:
     name: go test
     runs-on: ubuntu-latest
 
