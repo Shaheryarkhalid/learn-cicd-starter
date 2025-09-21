@@ -1,0 +1,26 @@
+name: ci2
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  Tests:
+    name: Test
+    runs-on: ubuntu-latest 
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      - name: Setup Go
+        uses: actions/setup-go@v6
+
+      - name: Install go-sec
+        run: go get https://github.com/securego/gosec
+
+      - name: Run Tests 
+        run: go test ./... 
+
+      - name: Run Security Checks
+        run: go-sec ./...
