@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-go@v6
 
       - name: Install go-sec
-        run: go get https://github.com/securego/gosec
+        run: go install github.com/securego/gosec/v2/cmd/gosec@latest 
 
       - name: Run Tests 
         run: go test ./... 
