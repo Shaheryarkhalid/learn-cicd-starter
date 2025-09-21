@@ -23,4 +23,19 @@ jobs:
         run: go test ./... 
 
       - name: Run Security Checks
-        run: go-sec ./...
+        run: gosec ./...
+  Styles:
+    name: Styles
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+      - run: go install honnef.co/go/tools/cmd/staticcheck@2022.1
+
+      - name: Check for Formatting Errors
+        run: test -z $(go fmt ./...)
+
+      - name: Check for Linting Errors
+        run: staticcheck ./...
+
