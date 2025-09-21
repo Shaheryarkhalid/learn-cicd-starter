@@ -10,20 +10,16 @@ jobs:
     runs-on: ubuntu-latest 
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v5
-
-      - name: Setup Go
-        uses: actions/setup-go@v6
-
-      - name: Install go-sec
-        run: go install github.com/securego/gosec/v2/cmd/gosec@latest 
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+      - run: go install github.com/securego/gosec/v2/cmd/gosec@latest 
 
       - name: Run Tests 
         run: go test ./... 
 
       - name: Run Security Checks
         run: gosec ./...
+
   Styles:
     name: Styles
     runs-on: ubuntu-latest
