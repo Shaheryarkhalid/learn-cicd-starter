@@ -32,8 +32,8 @@ jobs:
         run: ./scripts/buildprod.sh
 
       - name: Build, and tag docker image
-        run: docker build -t ${{ steps.login-ecr.outputs.registry }}/notely-ar-repo:latest . 
+        run: docker build -t ${{ steps.login-ecr.outputs.registry }}/notely-ar-repo:latest2 . 
 
       - name: Push docker image
-        run: docker push ${{ steps.login-ecr.outputs.registry }}/notely-ar-repo:latest
+        run: docker push ${{ steps.login-ecr.outputs.registry }}/notely-ar-repo:latest2
 
