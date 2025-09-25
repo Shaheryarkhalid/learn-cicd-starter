@@ -8,6 +8,9 @@ jobs:
   Deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    env: 
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -16,6 +19,9 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: "1.25.1"
+
+      - name: Setup goose
+        run: go install github.com/pressly/goose/v3/cmd/goose@latest
 
       - name: Configure AWS Credintials
         uses: aws-actions/configure-aws-credentials@v4
@@ -36,4 +42,7 @@ jobs:
 
       - name: Push docker image
         run: docker push ${{ steps.login-ecr.outputs.registry }}/notely-ar-repo:latest2
+
+      - name: Run Database Migration
+        run: ./scripts/migrateup.sh
 
