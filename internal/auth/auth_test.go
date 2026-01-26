@@ -19,7 +19,7 @@ func TestGetAPIKey(t *testing.T){
 		t.Error(err)
 		t.Fail()
 	}
-	if apiKey != ""{
+	if apiKey != testApiKey{
 		t.Error("not valid key")
 		t.Fail()
 	}
