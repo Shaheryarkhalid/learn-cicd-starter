@@ -16,6 +16,11 @@ jobs:
       - name: Setup Go 
         uses: actions/setup-go@v5
 
+      - id: 'auth service account 2'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+  
       - name: Build App 
         run: ./scripts/buildprod.sh
 
